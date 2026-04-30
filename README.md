@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center">Mil Maids Knowledge Chatbot</h1>
 <p align="center">
   A RAG-powered chatbot that answers questions about Mil Maids residential cleaning services using a local knowledge base and OpenAI.
@@ -131,3 +132,7 @@ Opens a web interface where you can type questions and click **"Refresh knowledg
 ## License
 
 MIT License. See `LICENSE` for details.
+=======
+# CSCE-5214-Group-7-AI-Assisted-Operations-Platform-for-Mil-Maids-Cleaning-Services
+CSCE 5214 Group 7: AI-Assisted Operations Platform for Mil Maids Cleaning Services
+>>>>>>> be3c63ce1a82e036228ef7471a55974beea4c3eb
