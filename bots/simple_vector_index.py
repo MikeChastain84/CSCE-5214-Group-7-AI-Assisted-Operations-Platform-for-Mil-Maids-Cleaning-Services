@@ -18,8 +18,11 @@ MIN_SIMILARITY = 0.35
 EMBEDDING_MODEL = 'text-embedding-3-small'
 COMPLETION_MODEL = 'gpt-3.5-turbo'
 
-BASE_PRICE = 150
-RATE_PER_SQFT = 0.23
+PRICING = {
+    'standard':    {'base': 100, 'rate': 0.07},
+    'deep':        {'base': 200, 'rate': 0.21},
+    'move-in/out': {'base': 150, 'rate': 0.23},
+}
 MIN_SQFT = 500
 MAX_SQFT = 6000
 
@@ -179,14 +182,13 @@ def extract_quote_details(prompt: str) -> tuple:
     return service_type, sqft, add_ons
 
 
-def calculate_quote(service_type: str, sqft: int, add_ons: list) -> float:
-    """Calculate price: BASE_PRICE + (RATE_PER_SQFT * sqft) + add-ons.
-    Returns None if sqft is invalid.
-    """
+def calculate_quote(service_type: str, sqft: int, add_ons: list):
     if sqft < MIN_SQFT or sqft > MAX_SQFT:
         return None
-    
-    total = BASE_PRICE + (RATE_PER_SQFT * sqft)
+    pricing = PRICING.get(service_type)
+    if not pricing:
+        return None
+    total = pricing['base'] + (pricing['rate'] * sqft)
     for addon_name, addon_price in add_ons:
         if addon_price is not None:
             total += addon_price
